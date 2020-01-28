@@ -1,19 +1,23 @@
 {% extends 'polls/base.html' %}
+
 {% block main_content %}
 
-    <h1>{{question.question_text}}</h1>
+<h1> Choose a question </h1>
+    <!--<h1>{{question.question_text}}</h1>
     <ul>
         {% for choice in question.choice_set.all %}
-        <li> {{choice.choice_text}}</li>
+            <li> {{choice.choice_text}}</li>
         {% endfor %}
-    </ul>
+    </ul>-->
 
         {% if latest_questions %}
+
             {% for question in latest_questions %}
-            <a href="/polls/{{question.id}}"><b> question.question_text</b></a>
+                <a href={% url "polls:detail" question.id %}><b> {{question.question_text}} </b></a><br>
             {% endfor %}
+
         {% else %}
-        <p>You do not have any question. Please, add someone.</p>
+            <p>You do not have any question. Please, add someone.</p>
         {%endif%}
 
 {% endblock %}
